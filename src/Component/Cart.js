@@ -1,15 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import "./common.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import CartCards from "./CartCards";
+import { calculatePrice } from "../Redux/Slices/CartSlice";
 
 const Cart = () => {
   const cartItems = useSelector((state) => state.cart.value);
+  const totalPrice = useSelector((state) => state.cart.totalPrice);
+  const dispatch = useDispatch();
 
   // console.log(cartItems);
 
-  // ADDING TWO PARTS OF CART PAGE 
+  useEffect(() => {
+    dispatch(calculatePrice());
+  }, []);
 
   return (
     <div>
@@ -22,9 +27,9 @@ const Cart = () => {
           </div>
 
           <div className="cart-right">
-            <p>total price: </p>
+            <p>total price: {totalPrice}</p>
             <br />
-            <button>proceed to checkout</button>
+            <button className="btn">proceed to checkout</button>
           </div>
         </div>
       ) : (

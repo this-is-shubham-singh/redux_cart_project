@@ -57,6 +57,14 @@
 .cart-right {
   width: 50%;
   display: flex;
-  justify-content: center;
-  align-items: self-start; 
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+}
+
+.nav-cart-cont {
+  display: flex;
+  align-items: center;
+  color: white;
+  gap: 0.5rem;
 }
